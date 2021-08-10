@@ -10,10 +10,13 @@ def fetchSpotifyData(spotifyUrl, bearerToken):
         "Authorization": f"Bearer {SPOTIFY_BEARER_TOKEN}"
     })
     res = res.json()
-    trackName = res['item']['name']
-    artists = res['item']['artists']
-    artistName = ", ".join([artist['name'] for artist in artists])
-    print(f"{trackName} - {artistName}")
+    try:
+        trackName = res['item']['name']
+        artists = res['item']['artists']
+        artistName = ", ".join([artist['name'] for artist in artists])
+        print(f"{trackName} - {artistName}")
+    except:
+        print('')
 
 def main():
     fetchSpotifyData(SPOTIFY_CURRENT_PLAYING_URL, SPOTIFY_BEARER_TOKEN)
